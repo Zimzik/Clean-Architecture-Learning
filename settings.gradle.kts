@@ -19,6 +19,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Clean Archutecture Learning"
+rootProject.name = "Clean Architecture Learning"
 include(":app")
- 
+include(":domain")
+include(":data")
+include(":presentation")

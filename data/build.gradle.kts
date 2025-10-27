@@ -1,23 +1,19 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.example.cleanarchitecturelearning"
+    namespace = "com.example.data"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.cleanarchitecturelearning"
         minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -38,17 +34,13 @@ android {
             jvmTarget = JvmTarget.JVM_17
         }
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
-    // inner modules
-    implementation(project(":presentation"))
-    implementation(project(":domain"))
-    implementation(project(":data"))
-
+    // core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
 }
